@@ -9,6 +9,8 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
   const hasSlides = project.slides && project.slides.length > 1;
 
   const handleClose = useCallback(() => {
@@ -95,6 +97,22 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
     return <Image src={project.image} alt={project.name} fill sizes="1100px" className="object-contain lg:object-cover lg:object-top" />;
   }
 
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (!hasSlides) return;
+    if (Math.abs(diff) < 50) return;
+    if (diff > 0) {
+      setSlideIndex((i) => (i === project.slides!.length - 1 ? 0 : i + 1));
+    } else {
+      setSlideIndex((i) => (i === 0 ? project.slides!.length - 1 : i - 1));
+    }
+  }
+
   function togglePlayPause() {
     if (!videoRef.current) return;
     if (isPlaying) { videoRef.current.pause(); setIsPlaying(false); }
@@ -120,7 +138,11 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           )}
-          <div className="relative mx-4 h-full w-full max-w-[1100px] overflow-hidden rounded-xl md:mx-20">
+          <div
+            className="relative mx-4 h-full w-full max-w-[1100px] overflow-hidden rounded-xl md:mx-20"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {renderMedia()}
           </div>
           {hasSlides && (
