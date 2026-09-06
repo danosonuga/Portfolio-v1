@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { haptic, playPositiveSound } from "@/lib/feedback";
 
 export function Hero() {
   const [copied, setCopied] = useState(false);
 
   function copyEmail() {
     navigator.clipboard.writeText("osonuga.daniel@gmail.com");
+    haptic();
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -38,6 +40,7 @@ export function Hero() {
           data-cal-link="danosonuga/intro-call"
           data-cal-namespace="intro-call"
           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          onClick={playPositiveSound}
           className="rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90"
         >
           Book an intro call

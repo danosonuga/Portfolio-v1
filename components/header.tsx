@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { haptic, playPositiveSound } from "@/lib/feedback";
 
 const navLinks = ["Home", "Work", "About", "UI shots"];
 
@@ -27,14 +28,21 @@ export function Header() {
       return;
     }
     setMenuOpen(false);
+    haptic();
     setToast(true);
     setTimeout(() => setToast(false), 2000);
   }
 
   function copyEmail() {
     navigator.clipboard.writeText("osonuga.daniel@gmail.com");
+    haptic();
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  }
+
+  function handleBookCall() {
+    playPositiveSound();
+    setMenuOpen(false);
   }
 
   return (
@@ -108,7 +116,7 @@ export function Header() {
               data-cal-link="danosonuga/intro-call"
               data-cal-namespace="intro-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-              onClick={() => setMenuOpen(false)}
+              onClick={handleBookCall}
               className="w-full rounded-full bg-white py-3.5 text-[14px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90"
             >
               Book an intro call

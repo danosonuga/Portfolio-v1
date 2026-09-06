@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { playPositiveSound } from "@/lib/feedback";
 
 const links = [
   { label: "Email", href: "mailto:osonuga.daniel@gmail.com" },
@@ -69,6 +70,7 @@ export function Footer() {
             data-cal-namespace="intro-call"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             className="cursor-pointer"
+            onClick={playPositiveSound}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
