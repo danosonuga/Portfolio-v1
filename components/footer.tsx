@@ -61,13 +61,13 @@ export function Footer() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <footer className="animate-in mt-24 border-t border-[#1A1A1A] pt-24 pb-12" style={{ animationDelay: "800ms" }}>
-      <div className="mx-auto w-[80%]">
+    <footer className="animate-in mt-16 border-t border-[#1A1A1A] pt-16 pb-12 md:mt-24 md:pt-24" style={{ animationDelay: "800ms" }}>
+      <div className="mx-auto w-[90%] md:w-[80%]">
         <h2 className="w-full text-center font-semibold leading-[1] tracking-[-0.04em] text-foreground" style={{ fontSize: "10.2vw" }}>
-          <a
-            href="https://cal.com/danosonuga/intro-call"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            data-cal-link="danosonuga/intro-call"
+            data-cal-namespace="intro-call"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             className="cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -78,11 +78,11 @@ export function Footer() {
               hoverText="Book an intro call"
               isHovered={isHovered}
             />
-          </a>
+          </button>
         </h2>
-        <div className="mt-16 flex items-center justify-between">
+        <div className="mt-10 flex flex-col gap-6 md:mt-16 md:flex-row md:items-center md:justify-between">
           <p className="text-[13px] text-muted">All rights reserved</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6">
             {links.map((link) => (
               <a
                 key={link.label}

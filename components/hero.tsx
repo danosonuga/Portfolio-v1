@@ -12,10 +12,10 @@ export function Hero() {
   }
 
   return (
-    <section className="mx-auto max-w-[720px] pt-[100px] pb-10">
-      <h1 className="animate-in text-[48px] font-semibold leading-[56px] tracking-[-0.02em] text-foreground" style={{ animationDelay: "100ms" }}>
+    <section className="mx-auto max-w-[720px] pt-[60px] pb-10 md:pt-[100px]">
+      <h1 className="animate-in text-[32px] font-semibold leading-[40px] tracking-[-0.02em] text-foreground md:text-[48px] md:leading-[56px]" style={{ animationDelay: "100ms" }}>
         Design partner for early-
-        <br />
+        <br className="hidden md:block" />
         stage startups and founders.
       </h1>
 
@@ -23,25 +23,25 @@ export function Hero() {
         I previously led the design initiative at{" "}
         <span className="font-semibold text-foreground">IPC Africa</span>,
         before that I worked with the design team at
-        <br />
-        <span className="font-semibold text-foreground">Remita</span> to elevate
+        <br className="hidden md:block" />
+        {" "}<span className="font-semibold text-foreground">Remita</span> to elevate
         their agent and corporate experience. Now I help early-stage startups
         move from
-        <br />
-        <span className="font-semibold text-foreground">0 → 1</span> from idea
+        <br className="hidden md:block" />
+        {" "}<span className="font-semibold text-foreground">0 → 1</span> from idea
         to fully working product.{" "}
         <span className="font-semibold text-foreground">Open to relocate</span>.
       </p>
 
       <div className="animate-in mt-8 flex items-center gap-3" style={{ animationDelay: "260ms" }}>
-        <a
-          href="https://cal.com/danosonuga/intro-call"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          data-cal-link="danosonuga/intro-call"
+          data-cal-namespace="intro-call"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
           className="rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90"
         >
           Book an intro call
-        </a>
+        </button>
         <button
           onClick={copyEmail}
           className="inline-grid rounded-full bg-[#1A1A1A] px-4 py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-90"

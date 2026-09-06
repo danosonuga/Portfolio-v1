@@ -19,12 +19,12 @@ export function UiShots() {
   const repeated = [...images, ...images];
 
   return (
-    <section className="animate-in mt-24" style={{ animationDelay: "700ms" }}>
-      <div className="mx-auto w-[80%]">
+    <section className="animate-in mt-16 md:mt-24" style={{ animationDelay: "700ms" }}>
+      <div className="mx-auto w-[90%] md:w-[80%]">
         <p className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
           UI Shots
         </p>
-        <h2 className="mt-3 text-[40px] font-semibold leading-[48px] tracking-[-0.02em] text-foreground">
+        <h2 className="mt-3 text-[28px] font-semibold leading-[36px] tracking-[-0.02em] text-foreground md:text-[40px] md:leading-[48px]">
           More of my personal
           <br />
           explorations
@@ -36,8 +36,8 @@ export function UiShots() {
           {repeated.map((img, i) => (
             <div
               key={`${img.src}-${i}`}
-              className="skeleton shrink-0 overflow-hidden rounded-[16px]"
-              style={{ width: img.width, height: 480 }}
+              className="skeleton shrink-0 overflow-hidden rounded-[12px] h-[280px] md:h-[480px] md:rounded-[16px]"
+              style={{ aspectRatio: `${img.width} / ${img.height}` }}
             >
               <Image
                 src={img.src}

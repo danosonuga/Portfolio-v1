@@ -9,11 +9,11 @@ const logos = [
 
 export function TrustBar() {
   return (
-    <div className="mx-auto flex max-w-[720px] flex-col gap-4 pb-[100px]">
+    <div className="mx-auto flex max-w-[720px] flex-col gap-4 pb-[60px] md:pb-[100px]">
       <p className="animate-in text-[13px] text-muted" style={{ animationDelay: "340ms" }}>
         Trusted by teams & early stage startup across the globe
       </p>
-      <div className="animate-in flex items-center gap-7" style={{ animationDelay: "400ms" }}>
+      <div className="animate-in flex flex-wrap items-center gap-5 md:gap-7" style={{ animationDelay: "400ms" }}>
         {logos.map((logo) => (
           <Image
             key={logo.name}

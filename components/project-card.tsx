@@ -14,6 +14,7 @@ export interface Project {
   slides?: string[];
   slideFit?: "contain" | "cover";
   liveUrl?: string;
+  caseStudy?: "coming-soon" | string;
 }
 
 export function ProjectCard({ project, delay = 0, onClick }: { project: Project; delay?: number; onClick?: () => void }) {
