@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 export interface Project {
   name: string;
@@ -19,12 +19,34 @@ export interface Project {
 
 export function ProjectCard({ project, delay = 0, onClick }: { project: Project; delay?: number; onClick?: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [slideIndex, setSlideIndex] = useState(0);
 
   const hasSlides = project.slides && project.slides.length > 1;
   const touchStartX = useRef(0);
+
+  useEffect(() => {
+    if (!project.video || !cardRef.current) return;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (!isMobile) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!videoRef.current) return;
+        if (entry.isIntersecting) {
+          videoRef.current.play();
+          setIsPlaying(true);
+        } else {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, [project.video]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -80,7 +102,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
   }
 
   return (
-    <div className="animate-in group flex cursor-pointer flex-col gap-4" style={{ animationDelay: `${delay}ms` }} onClick={onClick}>
+    <div ref={cardRef} className="animate-in group flex cursor-pointer flex-col gap-4" style={{ animationDelay: `${delay}ms` }} onClick={onClick}>
       <div
         className="relative aspect-square w-full overflow-hidden rounded-[24px] bg-[#1A1A1A] transition-colors duration-200 hover:bg-[#262627]"
         onMouseEnter={handleMouseEnter}
