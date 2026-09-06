@@ -99,7 +99,7 @@ export function Header() {
           <div className="mt-auto flex flex-col gap-3 pb-10">
             <button
               onClick={copyEmail}
-              className="inline-grid w-full rounded-full border border-[#2A2A2A] py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-white/5"
+              className="inline-grid w-full rounded-full bg-[#1A1A1A] py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#222]"
             >
               <span className={`col-start-1 row-start-1 ${copied ? "invisible" : ""}`}>Copy email</span>
               <span className={`col-start-1 row-start-1 ${copied ? "" : "invisible"}`}>Copied!</span>
