@@ -44,7 +44,7 @@ export function DesignProcess() {
       </h2>
       <div className="mt-10 grid grid-cols-1 gap-y-8 md:mt-12 md:grid-cols-3 md:gap-x-16 md:gap-y-10">
         {steps.map((step) => (
-          <div key={step.title}>
+          <div key={step.title} className="min-[1440px]:max-w-[420px]">
             <h3 className="text-[14px] font-medium leading-[22px] text-foreground">
               {step.title}
             </h3>

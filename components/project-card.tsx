@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 
 export interface Project {
   name: string;
@@ -24,6 +24,22 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
   const [slideIndex, setSlideIndex] = useState(0);
 
   const hasSlides = project.slides && project.slides.length > 1;
+  const touchStartX = useRef(0);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (!hasSlides || Math.abs(diff) < 50) return;
+    e.stopPropagation();
+    if (diff > 0) {
+      setSlideIndex((i) => (i === project.slides!.length - 1 ? 0 : i + 1));
+    } else {
+      setSlideIndex((i) => (i === 0 ? project.slides!.length - 1 : i - 1));
+    }
+  }, [hasSlides, project.slides]);
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -102,11 +118,11 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
           </button>
         )}
 
-        {hasSlides && isHovered && (
+        {hasSlides && (
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F]"
+              className={`absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:hidden ${slideIndex === 0 ? "opacity-0" : ""}`}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -114,7 +130,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F]"
+              className={`absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:hidden ${slideIndex === project.slides!.length - 1 ? "opacity-0" : ""}`}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -124,7 +140,39 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
         )}
 
         {hasSlides && isHovered && (
-          <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:flex"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:flex"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </>
+        )}
+
+        {hasSlides && (
+          <div className={`absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5 md:hidden`}>
+            {project.slides!.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 w-1.5 rounded-full transition-colors duration-200 ${i === slideIndex ? "bg-white" : "bg-white/40"}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {hasSlides && isHovered && (
+          <div className="absolute bottom-3 left-1/2 z-10 hidden -translate-x-1/2 gap-1.5 md:flex">
             {project.slides!.map((_, i) => (
               <span
                 key={i}
@@ -135,7 +183,12 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
         )}
 
         <div className="flex h-full items-center px-5">
-          <div className="skeleton relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "16/10" }}>
+          <div
+            className="skeleton relative w-full overflow-hidden rounded-lg"
+            style={{ aspectRatio: "16/10" }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {hasSlides ? (
               <div
                 className="flex h-full transition-transform duration-500"
