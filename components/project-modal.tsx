@@ -42,6 +42,17 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
 
   const liveUrl = project.liveUrl;
 
+  function renderSlideDots() {
+    if (!hasSlides) return null;
+    return (
+      <div className="flex shrink-0 items-center justify-center gap-2 py-3 md:hidden">
+        {project.slides!.map((_, i) => (
+          <button key={i} onClick={() => setSlideIndex(i)} className={`h-2 w-2 rounded-full transition-colors duration-200 ${i === slideIndex ? "bg-white" : "bg-white/30"}`} />
+        ))}
+      </div>
+    );
+  }
+
   function renderBottomButtons() {
     return (
       <div className="relative flex shrink-0 items-center justify-center gap-3 px-6 py-4">
@@ -61,7 +72,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
           </a>
         ) : null}
         {hasSlides ? (
-          <div className="absolute right-6 flex gap-2">
+          <div className="absolute right-6 hidden gap-2 md:flex">
             {project.slides!.map((_, i) => (
               <button key={i} onClick={() => setSlideIndex(i)} className={`h-2 w-2 rounded-full transition-colors duration-200 ${i === slideIndex ? "bg-white" : "bg-white/30"}`} />
             ))}
@@ -151,6 +162,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
             </button>
           )}
         </div>
+        {renderSlideDots()}
         {renderBottomButtons()}
       </div>
     </div>
