@@ -12,6 +12,20 @@ export const metadata: Metadata = {
   title: "Daniel Osonuga — Design Partner for Early-Stage Startups",
   description:
     "I help early-stage startups move from 0 → 1 from idea to fully working product.",
+  openGraph: {
+    title: "Daniel Osonuga — Design Partner for Early-Stage Startups",
+    description:
+      "I help early-stage startups move from 0 → 1 from idea to fully working product.",
+    type: "website",
+    siteName: "Daniel Osonuga",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daniel Osonuga — Design Partner for Early-Stage Startups",
+    description:
+      "I help early-stage startups move from 0 → 1 from idea to fully working product.",
+    creator: "@danosonuga",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
