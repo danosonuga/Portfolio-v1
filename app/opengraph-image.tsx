@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Daniel Osonuga — Design Partner for Early-Stage Startups";
+export const alt = "Daniel Osonuga — I care about the little things that make a product feel like a product";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -67,7 +67,7 @@ export default async function OGImage() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Design partner for
+              I care about the little
             </span>
             <span
               style={{
@@ -77,7 +77,7 @@ export default async function OGImage() {
                 letterSpacing: "-0.03em",
               }}
             >
-              early-stage startups
+              things that make a product
             </span>
             <span
               style={{
@@ -87,7 +87,7 @@ export default async function OGImage() {
                 letterSpacing: "-0.03em",
               }}
             >
-              and founders.
+              feel like a product.
             </span>
           </div>
           <span

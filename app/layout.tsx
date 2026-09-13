@@ -10,21 +10,21 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Daniel Osonuga — Design Partner for Early-Stage Startups",
+  title: "Daniel Osonuga — Product Designer",
   description:
-    "I help early-stage startups move from 0 → 1 from idea to fully working product.",
+    "I care about the little things that make a product feel like a product.",
   openGraph: {
-    title: "Daniel Osonuga — Design Partner for Early-Stage Startups",
+    title: "Daniel Osonuga — Product Designer",
     description:
-      "I help early-stage startups move from 0 → 1 from idea to fully working product.",
+      "I care about the little things that make a product feel like a product.",
     type: "website",
     siteName: "Daniel Osonuga",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Osonuga — Design Partner for Early-Stage Startups",
+    title: "Daniel Osonuga — Product Designer",
     description:
-      "I help early-stage startups move from 0 → 1 from idea to fully working product.",
+      "I care about the little things that make a product feel like a product.",
     creator: "@danosonuga",
   },
 };
