@@ -169,7 +169,7 @@ function CaseStudyBlock({ section }: { section: SectionType }) {
                     >
                       <p className="text-[14px] font-medium text-[var(--fg)]">
                         {item.url ? (
-                          <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline decoration-[var(--fg-muted)] underline-offset-2 transition-colors hover:decoration-[var(--fg)]">
+                          <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline decoration-dotted decoration-[var(--fg-muted)] underline-offset-2 transition-colors hover:decoration-[var(--fg)]">
                             {item.label}
                           </a>
                         ) : item.label}
