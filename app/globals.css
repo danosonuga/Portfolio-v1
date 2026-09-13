@@ -7,6 +7,12 @@
   --card-border: #222222;
   --muted: #888888;
   --accent: #a1a1a1;
+  --fg: #ededed;
+  --fg-muted: #888888;
+  --fg-subtle: #666666;
+  --bg-alt: #111111;
+  --border: #222222;
+  --surface: #161616;
 }
 
 @theme inline {
@@ -92,5 +98,66 @@ body {
       opacity: 1;
       transform: none;
     }
+  }
+}
+
+/* View Transitions — directional page slides */
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.nav-forward) {
+  --vt-slide-offset: -40px;
+  animation:
+    150ms ease-in both vt-fade reverse,
+    350ms cubic-bezier(0.22, 1, 0.36, 1) both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --vt-slide-offset: 40px;
+  animation:
+    200ms ease-out 100ms both vt-fade,
+    350ms cubic-bezier(0.22, 1, 0.36, 1) both vt-slide;
+}
+
+::view-transition-old(.nav-back) {
+  --vt-slide-offset: 40px;
+  animation:
+    150ms ease-in both vt-fade reverse,
+    350ms cubic-bezier(0.22, 1, 0.36, 1) both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --vt-slide-offset: -40px;
+  animation:
+    200ms ease-out 100ms both vt-fade,
+    350ms cubic-bezier(0.22, 1, 0.36, 1) both vt-slide;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes vt-slide {
+  from {
+    translate: var(--vt-slide-offset);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }

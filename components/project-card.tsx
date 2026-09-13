@@ -238,13 +238,15 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
               </div>
             ) : (
               <>
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  sizes="(max-width: 768px) 80vw, 26vw"
-                  className={`object-cover object-top ${project.video && isPlaying ? "invisible" : ""}`}
-                />
+                {!project.video && (
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 768px) 80vw, 26vw"
+                    className="object-cover object-top"
+                  />
+                )}
                 {project.video && (
                   <video
                     ref={videoRef}
@@ -252,7 +254,8 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
                     muted
                     playsInline
                     loop
-                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${isPlaying ? "opacity-100" : "opacity-0"}`}
+                    autoPlay
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                 )}
               </>

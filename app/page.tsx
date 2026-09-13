@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import { Header } from "@/components/header";
 import { AvailabilityBar } from "@/components/availability-bar";
 import { Hero } from "@/components/hero";
@@ -9,17 +10,31 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background font-sans">
-      <Header />
-      <AvailabilityBar />
-      <main className="mx-auto w-[90%] pb-24 md:w-[80%]">
-        <Hero />
-        <TrustBar />
-        <ProjectGrid />
-      </main>
-      <UiShots />
-      <DesignProcess />
-      <Footer />
-    </div>
+    <ViewTransition
+      enter={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        default: "none",
+      }}
+      exit={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        default: "none",
+      }}
+      default="none"
+    >
+      <div className="min-h-screen bg-background font-sans">
+        <Header />
+        <AvailabilityBar />
+        <main className="mx-auto w-[90%] pb-24 md:w-[80%]">
+          <Hero />
+          <TrustBar />
+          <ProjectGrid />
+        </main>
+        <UiShots />
+        <DesignProcess />
+        <Footer />
+      </div>
+    </ViewTransition>
   );
 }

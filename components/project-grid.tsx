@@ -46,16 +46,9 @@ const projects: Project[] = [
     image: "/Daash image preview.png",
     icon: "/Daash app icon.png",
     badge: "₦8.7B+ transaction value",
-    caseStudy: "coming-soon",
+    caseStudy: "daash",
     liveUrl: "https://daashapp.co/",
-    slideFit: "contain",
-    slides: [
-      "/Daash image preview.png",
-      "/Daash slide - 1.png",
-      "/Daash slide - 2.png",
-      "/Daash slide - 3.png",
-      "/Daash slide - 4.png",
-    ],
+    video: "/Daash preview new.mov",
   },
   {
     name: "Lovebox",

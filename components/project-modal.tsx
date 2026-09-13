@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useCallback, useRef } from "react";
 import type { Project } from "./project-card";
 
@@ -56,16 +57,22 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
   function renderBottomButtons() {
     return (
       <div className="relative flex shrink-0 items-center justify-center gap-3 px-6 py-4">
-        <button className="flex items-center gap-2 rounded-full bg-[#4F4F4F] px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-[#5a5a5a]">
-          {project.caseStudy === "coming-soon" ? (
-            <>Coming soon</>
-          ) : (
-            <>
-              <Image src="/lock_filled.svg" alt="" width={12} height={12} />
-              Read case study
-            </>
-          )}
-        </button>
+        {project.caseStudy && project.caseStudy !== "coming-soon" ? (
+          <Link href={`/work/${project.caseStudy}`} transitionTypes={["nav-forward"]} className="flex items-center gap-2 rounded-full bg-[#4F4F4F] px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-[#5a5a5a]">
+            Read case study
+          </Link>
+        ) : (
+          <button className="flex items-center gap-2 rounded-full bg-[#4F4F4F] px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-[#5a5a5a]">
+            {project.caseStudy === "coming-soon" ? (
+              <>Coming soon</>
+            ) : (
+              <>
+                <Image src="/lock_filled.svg" alt="" width={12} height={12} />
+                Read case study
+              </>
+            )}
+          </button>
+        )}
         {liveUrl ? (
           <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="rounded-full bg-white px-5 py-2.5 text-[13px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90">
             Visit live site
@@ -86,8 +93,8 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
     if (project.video) {
       return (
         <>
-          <Image src={project.image} alt={project.name} fill sizes="1100px" className={`object-contain lg:object-cover lg:object-top ${isPlaying ? "invisible" : ""}`} />
-          <video ref={videoRef} src={project.video} muted playsInline loop className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-200 lg:object-cover lg:object-top ${isPlaying ? "opacity-100" : "opacity-0"}`} />
+          <img src={project.image} alt={project.name} className={`h-auto w-full rounded-xl ${isPlaying ? "invisible" : ""}`} />
+          <video ref={videoRef} src={project.video} muted playsInline loop className={`absolute inset-0 h-full w-full rounded-xl object-contain transition-opacity duration-200 ${isPlaying ? "opacity-100" : "opacity-0"}`} />
           <button onClick={togglePlayPause} className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
             <Image src={isPlaying ? "/pause_filled.svg" : "/play_filled.svg"} alt={isPlaying ? "Pause" : "Play"} width={14} height={14} />
           </button>
@@ -133,7 +140,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-200 ${isVisible ? "opacity-100" : "opacity-0"}`} onClick={handleClose}>
       <div className="absolute inset-0 bg-black/80" />
-      <div className={`relative z-10 flex h-full w-full flex-col overflow-hidden bg-[#262627] transition-transform duration-300 md:h-[90vh] md:w-[90vw] md:rounded-[20px] ${isVisible ? "scale-100" : "scale-[0.97]"}`} style={{ transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)" }} onClick={(e) => e.stopPropagation()}>
+      <div className={`relative z-10 flex h-full w-full flex-col overflow-hidden bg-[#262627] transition-transform duration-300 md:h-auto md:max-h-[90vh] md:w-[90vw] md:rounded-[20px] ${isVisible ? "scale-100" : "scale-[0.97]"}`} style={{ transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)" }} onClick={(e) => e.stopPropagation()}>
         <div className="flex shrink-0 items-center justify-between px-5 py-4 md:px-6">
           <div className="flex items-center gap-3">
             <Image src={project.icon} alt={`${project.name} icon`} width={36} height={36} className="rounded-lg" />
@@ -143,14 +150,15 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         </div>
-        <div className="relative flex min-h-0 flex-1 items-center justify-center py-6">
+        <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden py-6">
           {hasSlides && (
             <button onClick={() => setSlideIndex((i) => (i === 0 ? project.slides!.length - 1 : i - 1))} className="absolute left-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:left-6">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           )}
           <div
-            className="relative mx-4 h-full w-full max-w-[1100px] overflow-hidden rounded-xl md:mx-20"
+            className="relative mx-4 w-full max-w-[1100px] overflow-hidden rounded-xl md:mx-20"
+            style={{ maxHeight: "100%" }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
