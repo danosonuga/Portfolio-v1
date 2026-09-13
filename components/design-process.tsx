@@ -37,10 +37,8 @@ export function DesignProcess() {
       <p className="text-[12px] font-medium uppercase tracking-[0.1em] text-muted">
         My design process
       </p>
-      <h2 className="mt-3 text-[28px] font-semibold leading-[36px] tracking-[-0.02em] text-foreground md:text-[40px] md:leading-[48px]">
-        I follow a non-linear approach for each
-        <br className="hidden md:block" />
-        {" "}product. It typically looks like this:
+      <h2 className="mt-3 text-[28px] font-semibold leading-[36px] tracking-[-0.02em] text-foreground md:text-[40px] md:leading-[48px]" style={{ textWrap: "balance" } as React.CSSProperties}>
+        I follow a non-linear approach for each product. It typically looks like this:
       </h2>
       <div className="mt-10 grid grid-cols-1 gap-y-8 md:mt-12 md:grid-cols-3 md:gap-x-16 md:gap-y-10">
         {steps.map((step) => (

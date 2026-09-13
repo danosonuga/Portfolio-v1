@@ -303,12 +303,20 @@ function CaseStudyBlock({ section }: { section: SectionType }) {
               style={{ background: "var(--hero-bg, var(--surface, #161616))" }}
             >
               <div className="mx-auto w-[90%] md:w-[80%]">
-                <div className="overflow-hidden rounded-[12px] md:rounded-[16px]">
+                <div className="relative">
                   <img
                     src={section.image!}
-                    alt={section.imageAlt || ""}
-                    className="h-auto w-full"
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 h-full w-full scale-[1.02] rounded-[12px] blur-[40px] opacity-40 md:rounded-[16px] md:blur-[60px]"
                   />
+                  <div className="relative overflow-hidden rounded-[12px] md:rounded-[16px]">
+                    <img
+                      src={section.image!}
+                      alt={section.imageAlt || ""}
+                      className="h-auto w-full"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

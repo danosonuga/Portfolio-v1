@@ -78,7 +78,7 @@ export function ProjectHero({ project }: { project: CaseStudy }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[14px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90"
+              className="rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90"
             >
               Visit live site
             </a>
@@ -93,10 +93,7 @@ export function ProjectHero({ project }: { project: CaseStudy }) {
         <div
           className="mx-auto w-[90%] py-10 md:w-[80%] md:py-16"
         >
-          <div
-            className="relative aspect-[16/9] overflow-hidden rounded-[16px] md:rounded-[20px]"
-            style={{ background: "var(--bg-alt)" }}
-          >
+          <div className="relative">
             {project.heroVideo ? (
               <video
                 src={project.heroVideo}
@@ -104,18 +101,43 @@ export function ProjectHero({ project }: { project: CaseStudy }) {
                 muted
                 loop
                 playsInline
-                className="absolute inset-0 h-full w-full object-cover object-top"
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full scale-[1.02] rounded-[16px] object-cover object-top blur-[40px] opacity-40 md:rounded-[20px] md:blur-[60px]"
               />
             ) : (
               <Image
                 src={project.heroImage}
-                alt={project.name}
+                alt=""
                 fill
                 sizes="(max-width: 768px) 100vw, 1200px"
-                className="object-cover object-top"
-                priority
+                className="scale-[1.02] rounded-[16px] object-cover object-top blur-[40px] opacity-40 md:rounded-[20px] md:blur-[60px]"
+                aria-hidden="true"
               />
             )}
+            <div
+              className="relative aspect-[16/9] overflow-hidden rounded-[16px] md:rounded-[20px]"
+              style={{ background: "var(--bg-alt)" }}
+            >
+              {project.heroVideo ? (
+                <video
+                  src={project.heroVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              ) : (
+                <Image
+                  src={project.heroImage}
+                  alt={project.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className="object-cover object-top"
+                  priority
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
