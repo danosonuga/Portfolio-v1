@@ -42,7 +42,7 @@ const projects: Project[] = [
   },
   {
     name: "Daash",
-    description: "Manage your restaurant and retail business.",
+    description: "Making restaurant operations feel simple.",
     image: "/Daash image preview.png",
     icon: "/Daash app icon.png",
     badge: "₦8.7B+ transaction value",

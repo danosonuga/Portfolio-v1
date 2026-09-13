@@ -15,10 +15,8 @@ export function Hero() {
 
   return (
     <section className="mx-auto max-w-[720px] pt-[60px] pb-10 md:pt-[100px]">
-      <h1 className="animate-in text-[32px] font-semibold leading-[40px] tracking-[-0.02em] text-foreground md:text-[48px] md:leading-[56px]" style={{ animationDelay: "100ms" }}>
-        Design partner for early-
-        <br className="hidden md:block" />
-        stage startups and founders.
+      <h1 className="animate-in text-[32px] font-semibold leading-[40px] tracking-[-0.02em] text-foreground md:text-[48px] md:leading-[56px]" style={{ animationDelay: "100ms", textWrap: "balance" } as React.CSSProperties}>
+        I care about the little things that make a product feel like a product.
       </h1>
 
       <p className="animate-in mt-6 text-[14px] leading-[22px] text-muted" style={{ animationDelay: "180ms" }}>

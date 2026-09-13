@@ -168,7 +168,11 @@ function CaseStudyBlock({ section }: { section: SectionType }) {
                       }}
                     >
                       <p className="text-[14px] font-medium text-[var(--fg)]">
-                        {item.label}
+                        {item.url ? (
+                          <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline decoration-[var(--fg-muted)] underline-offset-2 transition-colors hover:decoration-[var(--fg)]">
+                            {item.label}
+                          </a>
+                        ) : item.label}
                       </p>
                       <p className="mt-2 text-[13px] leading-[1.6] text-[var(--fg-muted)]">
                         {item.value}

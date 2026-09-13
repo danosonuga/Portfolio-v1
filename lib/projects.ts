@@ -48,7 +48,7 @@ export interface CaseStudySection {
   caption?: string;
   value?: string;
   label?: string;
-  items?: { label: string; value: string }[];
+  items?: { label: string; value: string; url?: string }[];
   images?: { src: string; alt: string; caption?: string }[];
 }
 
@@ -352,7 +352,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         heading: "Credits",
         title: "Shoutout to the amazing team",
         items: [
-          { label: "Essien Ekam", value: "CTO" },
+          { label: "Essien Ekanem", value: "CTO", url: "https://www.essienekanem.xyz/" },
           { label: "Anyikamdu Christain", value: "Frontend Engineer" },
           { label: "Temitope Agboola", value: "Software Engineer" },
           { label: "Ayomide Daniel", value: "Product Manager (MVP)" },

@@ -23,6 +23,9 @@ export async function generateMetadata(
   return {
     title: `${project.name} — ${project.title}`,
     description: project.description,
+    icons: {
+      icon: project.icon,
+    },
     openGraph: {
       title: `${project.name} — ${project.title}`,
       description: project.description,
