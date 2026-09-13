@@ -29,8 +29,6 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
 
   useEffect(() => {
     if (!project.video || !cardRef.current) return;
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    if (!isMobile) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!videoRef.current) return;
@@ -129,6 +127,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
         {project.video && isHovered && (
           <button
             onClick={togglePlayPause}
+            aria-label={isPlaying ? "Pause video" : "Play video"}
             className="absolute top-3.5 right-3.5 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#4F4F4F] transition-opacity duration-200"
           >
             <Image
@@ -144,6 +143,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
           <>
             <button
               onClick={prevSlide}
+              aria-label="Previous slide"
               className={`absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:hidden ${slideIndex === 0 ? "opacity-0" : ""}`}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,6 +152,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
             </button>
             <button
               onClick={nextSlide}
+              aria-label="Next slide"
               className={`absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:hidden ${slideIndex === project.slides!.length - 1 ? "opacity-0" : ""}`}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -165,6 +166,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
           <>
             <button
               onClick={prevSlide}
+              aria-label="Previous slide"
               className="absolute left-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:flex"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -173,6 +175,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
             </button>
             <button
               onClick={nextSlide}
+              aria-label="Next slide"
               className="absolute right-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#4F4F4F]/80 backdrop-blur-sm transition-opacity duration-200 hover:bg-[#4F4F4F] md:flex"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +257,7 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
                     muted
                     playsInline
                     loop
-                    autoPlay
+                    preload="metadata"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 )}

@@ -74,6 +74,7 @@ export function Header() {
           </nav>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             className="relative z-50 flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 md:hidden"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">

@@ -95,7 +95,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
         <>
           <img src={project.image} alt={project.name} className={`h-auto w-full rounded-xl ${isPlaying ? "invisible" : ""}`} />
           <video ref={videoRef} src={project.video} muted playsInline loop className={`absolute inset-0 h-full w-full rounded-xl object-contain transition-opacity duration-200 ${isPlaying ? "opacity-100" : "opacity-0"}`} />
-          <button onClick={togglePlayPause} className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
+          <button onClick={togglePlayPause} aria-label={isPlaying ? "Pause video" : "Play video"} className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
             <Image src={isPlaying ? "/pause_filled.svg" : "/play_filled.svg"} alt={isPlaying ? "Pause" : "Play"} width={14} height={14} />
           </button>
         </>
@@ -146,13 +146,13 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
             <Image src={project.icon} alt={`${project.name} icon`} width={36} height={36} className="rounded-lg" />
             <span className="text-[14px] font-semibold text-foreground">{project.name}</span>
           </div>
-          <button onClick={handleClose} className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10">
+          <button onClick={handleClose} aria-label="Close" className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         </div>
         <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden py-6">
           {hasSlides && (
-            <button onClick={() => setSlideIndex((i) => (i === 0 ? project.slides!.length - 1 : i - 1))} className="absolute left-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:left-6">
+            <button onClick={() => setSlideIndex((i) => (i === 0 ? project.slides!.length - 1 : i - 1))} aria-label="Previous slide" className="absolute left-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:left-6">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           )}
@@ -165,7 +165,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
             {renderMedia()}
           </div>
           {hasSlides && (
-            <button onClick={() => setSlideIndex((i) => (i === project.slides!.length - 1 ? 0 : i + 1))} className="absolute right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:right-6">
+            <button onClick={() => setSlideIndex((i) => (i === project.slides!.length - 1 ? 0 : i + 1))} aria-label="Next slide" className="absolute right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:right-6">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           )}

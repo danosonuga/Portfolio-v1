@@ -86,7 +86,8 @@ export function ProjectGrid() {
 
   return (
     <>
-      <section className="grid grid-cols-1 gap-x-[20px] gap-y-[40px] sm:grid-cols-2 lg:grid-cols-3">
+      <section aria-labelledby="work-heading" className="grid grid-cols-1 gap-x-[20px] gap-y-[40px] sm:grid-cols-2 lg:grid-cols-3">
+        <h2 id="work-heading" className="sr-only">Work</h2>
         {projects.map((project, i) => (
           <ProjectCard
             key={project.name}
