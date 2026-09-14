@@ -128,7 +128,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   daash: {
     ...projects[0],
     heroImage: "/Daash image preview.png",
-    heroVideo: "/Daash preview new.mov",
+    heroVideo: "/Daash preview new.mp4",
     heroDescription:
       "Daash is an operations platform built to help restaurants manage their business in one place. It brings together workflows such as: **Sales · POS · Orders · Inventory · Online Store · Customers · Reports**. I joined when Daash was still being shaped, and I was the sole Product Designer responsible for the product experience.",
     meta: [

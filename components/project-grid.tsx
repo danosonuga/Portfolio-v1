@@ -48,7 +48,7 @@ const projects: Project[] = [
     badge: "₦8.7B+ transaction value",
     caseStudy: "daash",
     liveUrl: "https://daashapp.co/",
-    video: "/Daash preview new.mov",
+    video: "/Daash preview new.mp4",
   },
   {
     name: "Lovebox",
