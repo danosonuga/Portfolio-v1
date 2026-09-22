@@ -64,7 +64,7 @@ export function Footer() {
   return (
     <footer className="animate-in mt-16 border-t border-[#1A1A1A] pt-16 pb-12 md:mt-24 md:pt-24" style={{ animationDelay: "800ms" }}>
       <div className="mx-auto w-[90%] md:w-[80%]">
-        <h2 className="w-full text-center font-semibold leading-[1] tracking-[-0.04em] text-foreground" style={{ fontSize: "10.2vw" }}>
+        <h2 className="w-full text-center font-semibold leading-[1] tracking-[-0.04em] text-foreground" style={{ fontSize: "8.5vw" }}>
           <button
             data-cal-link="danosonuga/intro-call"
             data-cal-namespace="intro-call"
@@ -77,7 +77,7 @@ export function Footer() {
             <span className="sr-only">Daniel Osonuga</span>
             <TextSwap
               defaultText="Daniel Osonuga"
-              hoverText="Book an intro call"
+              hoverText="Get in touch with me"
               isHovered={isHovered}
             />
           </button>
