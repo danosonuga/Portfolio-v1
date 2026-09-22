@@ -1,33 +1,33 @@
 const steps = [
   {
-    title: "Product discovery",
+    title: "Understand",
     description:
-      "I hop on a quick product discovery call to understand the problem, product and the business goals.",
+      "Understand the user, business problem and constraints.",
   },
   {
-    title: "Research",
+    title: "Explore",
     description:
-      "After aligning on the product goals, I would do some user research and also check out competitors if any.",
+      "Research users, existing behaviour and competing solutions.",
   },
   {
-    title: "Moodboarding",
+    title: "Model",
     description:
-      "I explore various design solutions and inspiration, to understand which suits the stakeholder the most.",
+      "Map the system, states, information architecture and edge cases.",
   },
   {
-    title: "Design system",
+    title: "Design",
     description:
-      "I have a bespoke design system which I tweak to suits specifically every product I work on.",
+      "Develop and test solutions through prototypes and interaction design.",
   },
   {
-    title: "Collaborative design",
+    title: "Build",
     description:
-      "At every step of designing the product, the stakeholder is always carried along with weekly review calls.",
+      "Work closely with engineering to resolve implementation constraints.",
   },
   {
-    title: "Collaborative hand-off",
+    title: "Learn",
     description:
-      "I work closely with developers to ensure the development is aligned with the business goal, even after launch.",
+      "Measure what shipped, observe behaviour and iterate.",
   },
 ];
 

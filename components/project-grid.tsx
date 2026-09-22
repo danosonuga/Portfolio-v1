@@ -9,7 +9,7 @@ const CARD_BASE_DELAY = 460;
 const projects: Project[] = [
   {
     name: "Remita",
-    description: "Easy payment for everyone, everywhere.",
+    description: "Designing financial products at scale.",
     image: "/Remita image preview.png",
     icon: "/Remita app icon.png",
     confidential: true,
@@ -22,7 +22,7 @@ const projects: Project[] = [
   },
   {
     name: "Daash",
-    description: "Making restaurant operations feel simple.",
+    description: "Making complex operational systems simple.",
     image: "/Daash image preview.png",
     icon: "/Daash app icon.png",
     badge: "₦8.7B+ transaction value",

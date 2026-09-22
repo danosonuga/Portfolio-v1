@@ -19,18 +19,8 @@ export function Hero() {
         I care about the little things that make a product feel like a product.
       </h1>
 
-      <p className="animate-in mt-6 text-[14px] leading-[22px] text-muted" style={{ animationDelay: "180ms" }}>
-        I previously led the design initiative at{" "}
-        <span className="font-semibold text-foreground">IPC Africa</span>,
-        before that I worked with the design team at
-        <br className="hidden md:block" />
-        {" "}<span className="font-semibold text-foreground">Remita</span> to elevate
-        their agent and corporate experience. Now I help early-stage startups
-        move from
-        <br className="hidden md:block" />
-        {" "}<span className="font-semibold text-foreground">0 → 1</span> from idea
-        to fully working product.{" "}
-        <span className="font-semibold text-foreground">Open to relocate</span>.
+      <p className="animate-in mt-6 text-[14px] leading-[22px] text-muted" style={{ animationDelay: "180ms", textWrap: "balance" } as React.CSSProperties}>
+        <span className="text-foreground">I design complex products that make complicated things feel simple.</span>{" "}I've worked across fintech, B2B SaaS and operational platforms, partnering closely with product and engineering teams to turn complex workflows into products people can actually use.
       </p>
 
       <div className="animate-in mt-8 flex items-center gap-3" style={{ animationDelay: "260ms" }}>
@@ -41,7 +31,7 @@ export function Hero() {
           onClick={playPositiveSound}
           className="rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#0A0A0A] transition-opacity hover:opacity-90"
         >
-          Book an intro call
+          Get in touch
         </button>
         <button
           onClick={copyEmail}
