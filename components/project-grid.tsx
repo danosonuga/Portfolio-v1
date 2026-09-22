@@ -62,6 +62,13 @@ const projects: Project[] = [
     icon: "/GoSource app icon.png",
     confidential: true,
     liveUrl: "https://gosource.app/",
+    slides: [
+      "/GoSource slide - 1.png",
+      "/GoSource slide - 2.png",
+      "/GoSource slide - 3.png",
+      "/GoSource slide - 4.png",
+      "/GoSource image preview.png",
+    ],
   },
   {
     name: "Lovebox",

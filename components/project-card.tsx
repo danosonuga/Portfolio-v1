@@ -28,23 +28,35 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
   const touchStartX = useRef(0);
 
   useEffect(() => {
-    if (!project.video || !cardRef.current) return;
+    const el = cardRef.current;
+    if (!el) return;
+    let preloaded = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!videoRef.current) return;
         if (entry.isIntersecting) {
-          videoRef.current.play();
-          setIsPlaying(true);
+          if (project.video && videoRef.current) {
+            videoRef.current.play();
+            setIsPlaying(true);
+          }
+          if (!preloaded && project.slides) {
+            preloaded = true;
+            project.slides.forEach((src) => {
+              const img = new window.Image();
+              img.src = src;
+            });
+          }
         } else {
-          videoRef.current.pause();
-          setIsPlaying(false);
+          if (project.video && videoRef.current) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+          }
         }
       },
       { threshold: 0.5 }
     );
-    observer.observe(cardRef.current);
+    observer.observe(el);
     return () => observer.disconnect();
-  }, [project.video]);
+  }, []);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -66,6 +78,12 @@ export function ProjectCard({ project, delay = 0, onClick }: { project: Project;
     if (project.video && videoRef.current) {
       videoRef.current.play();
       setIsPlaying(true);
+    }
+    if (project.slides) {
+      project.slides.forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
     }
   }
 
